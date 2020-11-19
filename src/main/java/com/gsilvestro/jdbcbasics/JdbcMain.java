@@ -1,6 +1,6 @@
-package com.gsilvestro.hibernatebasics;
+package com.gsilvestro.jdbcbasics;
 
-import com.gsilvestro.hibernatebasics.model.Contact;
+import com.gsilvestro.jdbcbasics.model.Contact;
 
 import java.sql.*;
 

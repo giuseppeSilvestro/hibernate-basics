@@ -1,4 +1,4 @@
-package com.gsilvestro.hibernatebasics.model;
+package com.gsilvestro.jdbcbasics.model;
 
 public class Contact {
 

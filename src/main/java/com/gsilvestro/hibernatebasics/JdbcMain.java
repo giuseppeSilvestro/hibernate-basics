@@ -1,5 +1,7 @@
 package com.gsilvestro.hibernatebasics;
 
+import com.gsilvestro.hibernatebasics.model.Contact;
+
 import java.sql.*;
 
 public class JdbcMain {
@@ -18,7 +20,10 @@ public class JdbcMain {
             statement.executeUpdate("CREATE TABLE contacts (id INTEGER PRIMARY KEY, firstname STRING, lastname STRING, email STRING, phone INT(10))");
 
             // Insert a couple contacts
-            statement.executeUpdate("INSERT INTO contacts (firstname, lastname, email, phone) VALUES ('Gennaro', 'Esposito', 'ncsbaca@live.com', 123456789), ('Giuseppe', 'Silvestro', 'cjiosanoca@live.com', 789456123)");
+            Contact c = new Contact("Giuseppe", "Silvestro", "cnsbca@live.com", 123456798L);
+            save(c, statement);
+            c = new Contact("Gennaro", "Esposito", "cbsivai@live.com", 789456123L);
+            save(c, statement);
             // Fetch all the records from the contacts table. We store the result in a ResultSet
             ResultSet selectAll = statement.executeQuery("SELECT * FROM contacts");
 
@@ -34,5 +39,15 @@ public class JdbcMain {
             // Display connection or query errors
             System.err.printf("There was a database error: %s%n",ex.getMessage());
         }
+    }
+
+    //Save a new contact in the database
+    public static void save(Contact contact, Statement statement) throws SQLException {
+        //get the values from the Contact object and compose an INSERT query
+        String sql = "INSERT INTO contacts (firstname, lastname, email, id) VALUES ('%s', '%s', '$s', $d)";
+        sql = String.format(sql, contact.getFirstName(), contact.getLastName(), contact.getEmail(), contact.getId());
+
+        //execute the query
+        statement.executeUpdate(sql);
     }
 }

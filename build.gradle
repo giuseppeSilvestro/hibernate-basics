@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+}
+
+group 'com.gsilvestro'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    runtime 'org.xerial:sqlite-jdbc:3.8.11.2'
+}
